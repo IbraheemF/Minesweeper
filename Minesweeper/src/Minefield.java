@@ -26,15 +26,45 @@ public class Minefield {
     /**
      * Minefield
      * 
-     * Build a 2-d Cell array representing your minefield.
      * Constructor
      * @param rows       Number of rows.
      * @param columns    Number of columns.
-     * @param flags      Number of flags, should be equal to mines
+     * @param flags      Number of flags, equal to mines
      */
     public Minefield(int rows, int columns, int flags) {
         this.field = new Cell[rows][columns]; // intializing game board
         this.flags = flags;
+    }
+    
+    /**
+     * createMines
+     * 
+     * Randomly generates coordinates for possible mine locations.
+     * If the coordinate has not already been generated and is not equal to the starting cell sets the cell to be a mine.
+     * 
+     * @param x       Start x, avoid placing on this square.
+     * @param y        Start y, avoid placing on this square.
+     * @param mines      Number of mines to place.
+     */
+    public void createMines(int x, int y, int mines) { // first thing done after the creation of the gamefield is setting the mines
+        for (int i = 0; i< field.length; i++) {
+            for (int j = 0; j < field[0].length; j++) { //loop through all of our cells in the 2d array
+                field[i][j] = new Cell(false,"0"); // intialize every cell to 0
+            }
+        }
+        Random r = new Random();
+        while (mines != 0){ // loops until the proper amount of mines are placed at random on the field
+            int mine_X = r.nextInt(21);
+            int mine_Y = r.nextInt(21); // randomize mine coordinates
+            if (mine_X != x || mine_Y != y){
+                if (mine_X <= field.length-1&& mine_Y <=field[0].length-1){ // if mine is in bound and not the starting cell
+                    if(!field[mine_X][mine_Y].getStatus().equals("M")){
+                        field[mine_X][mine_Y] = new Cell(false, "M"); // set the cell to a mine
+                        mines--; //decrement mine counter variable
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -104,37 +134,6 @@ public class Minefield {
                             String incrementNum = String.valueOf(Integer.parseInt(checks[k].getStatus())+1); // calculates what current value of non-mine cell should be
                             checks[k].setStatus(incrementNum);
                         }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * createMines
-     * 
-     * Randomly generates coordinates for possible mine locations.
-     * If the coordinate has not already been generated and is not equal to the starting cell sets the cell to be a mine.
-     * 
-     * @param x       Start x, avoid placing on this square.
-     * @param y        Start y, avoid placing on this square.
-     * @param mines      Number of mines to place.
-     */
-    public void createMines(int x, int y, int mines) { // first thing done after the creation of the gamefield is setting the mines
-        for (int i = 0; i< field.length; i++) {
-            for (int j = 0; j < field[0].length; j++) { //loop through all of our cells in the 2d array
-                field[i][j] = new Cell(false,"0"); // intialize every cell to 0
-            }
-        }
-        Random r = new Random();
-        while (mines != 0){ // loops until the proper amount of mines are placed at random on the field
-            int mine_X = r.nextInt(21);
-            int mine_Y = r.nextInt(21); // randomize mine coordinates
-            if (mine_X != x || mine_Y != y){
-                if (mine_X <= field.length-1&& mine_Y <=field[0].length-1){ // if mine is in bound and not the starting cell
-                    if(!field[mine_X][mine_Y].getStatus().equals("M")){
-                        field[mine_X][mine_Y] = new Cell(false, "M"); // set the cell to a mine
-                        mines--; //decrement mine counter variable
                     }
                 }
             }
