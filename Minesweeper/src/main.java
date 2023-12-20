@@ -14,7 +14,7 @@ import java.util.Scanner;
  * 4. Once while loop is complete figure out how to determine if the user won or lost. Print appropriate statement.
  */
 
-// written by Ibraheem Fannoun (fanno010)
+// written by Ibraheem Fannoun
 public class main{
     public static void main(String[] args) {
         System.out.print("Select a mode:");
