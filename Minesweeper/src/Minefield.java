@@ -1,6 +1,6 @@
 
 import java.util.Random;
-// written by Ibraheem Fannoun (fanno010)
+// written by Ibraheem Fannoun
 public class Minefield {
     /**
     Global Section
