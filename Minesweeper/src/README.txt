@@ -1,4 +1,4 @@
-Ibraheem Fannoun (fanno010)
+Ibraheem Fannoun
 Game is played by running the main class. All inputs must be entered exactly as shown on their own lines
 For example for debug mode (ON or OFF), must input ON or OFF in all caps.
 All files must be in the same directary
